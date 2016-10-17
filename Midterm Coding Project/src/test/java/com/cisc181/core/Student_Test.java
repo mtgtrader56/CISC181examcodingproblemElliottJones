@@ -66,7 +66,7 @@ public class Student_Test {
 			Student student7 = new Student("a","b","c",  Startdate, eMajor.BUSINESS, "@USA", "202-316-4376","ABC@gmail.com",Student.setGrade(90));
 			Student student8 = new Student("a","b","c",  Startdate, eMajor.BUSINESS, "@USA", "202-316-4376","ABC@gmail.com",Student.setGrade(95));
 			Student student9 = new Student("a","b","c", Startdate, eMajor.BUSINESS, "@USA", "202-316-4376","ABC@gmail.com",Student.setGrade(100));
-			Student student10 = new Student("a","b","c", Startdate, eMajor.BUSINESS, "@USA", "202-316-4376","ABC@gmail.com",Student.setGrade(85));
+			Student student11 = new Student("a","b","c", Startdate, eMajor.BUSINESS, "@USA", "202-316-4376","ABC@gmail.com",Student.setGrade(85));
 			Studentlist.add(student1);
 			Studentlist.add(student2);
 			Studentlist.add(student3);
@@ -76,7 +76,7 @@ public class Student_Test {
 			Studentlist.add(student7);
 			Studentlist.add(student8);
 			Studentlist.add(student9);
-			Studentlist.add(student10);
+			Studentlist.add(student11);
 			}
 		
 	
@@ -85,6 +85,7 @@ public class Student_Test {
 
 		 Studentlist.get(0).setMajor(2);
 		 System.out.println(Studentlist.get(0).getMajor(2));
+		 
 		
 		
 	}
