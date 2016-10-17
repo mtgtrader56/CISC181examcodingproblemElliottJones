@@ -1,9 +1,14 @@
 package com.cisc181.core;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import com.cisc181.Exceptions.PersonException;
+
+import antlr.collections.List;
 
 /*
  * comment
@@ -60,12 +65,23 @@ public abstract class Person implements java.io.Serializable {
 		return address;
 	}
 
-	public void setPhone(String newPhone_number) {
-		phone_number = newPhone_number;
+	public void setPhone(String newPhone_number) throws PersonException {
+		ArrayList<String> phoneNumbers = new ArrayList<String>();
+		phoneNumbers.add(newPhone_number);
+		String regex = "^\\(?([0-9]{3})\\)?[-.\\s]?([0-9]{3})[-.\\s]?([0-9]{4})$";	 
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(newPhone_number);
+		boolean check = matcher.matches();
+		if (check == true){
+			this.phone_number = newPhone_number;
+		}
+		else {
+			throw new PersonException(this);
+		}
 	
 	}
 
-	public String getPhone() {
+	public String getPhone(){
 		return phone_number;
 	}
 
@@ -96,7 +112,11 @@ public abstract class Person implements java.io.Serializable {
 		this.LastName = LastName;
 		this.setDOB(DOB);
 		this.address = Address;
-		this.setPhone(Phone_number);
+		try {
+			this.setPhone(Phone_number);
+		} catch (PersonException e) {
+			e.printStackTrace();
+		}
 		this.email_address = Email;
 		
 	}
@@ -116,6 +136,7 @@ public abstract class Person implements java.io.Serializable {
 
 		int age = 0;
 		birthDate.setTime(this.DOB);
+		
 		if (birthDate.after(today)) {
 			throw new IllegalArgumentException("Can't be born in the future");
 		}
